@@ -1,0 +1,93 @@
+<section id="projects" class="py-20 px-10 bg-black text-white">
+  <h2 class="text-3xl font-bold mb-12 text-center">My Projects</h2>
+
+  <style>
+    .project-card {
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(0, 0, 0, 1) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(168, 85, 247, 0.12), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+  </style>
+
+  {
+    [
+      {
+        title: "Landing Page Accreditation System",
+        description: "A responsive website built to present the accreditation profile of the Business Information Systems Program at the State Polytechnic of Malang.",
+        image: "/images/accreditation.png",
+        links: [
+          { label: "Figma", url: "#", type: "primary" },
+          { label: "GitHub", url: "#", type: "secondary" }
+        ]
+      },
+      {
+        title: "Admin Dashboard",
+        description: "A dashboard web app for managing data and tracking analytics with a clean interface and smooth workflow.",
+        image: "/projects/dashboard.png",
+        links: [
+          { label: "Figma", url: "#", type: "primary" },
+          { label: "Preview", url: "#", type: "secondary" }
+        ]
+      },
+      {
+        title: "Portfolio Website",
+        description: "A minimalist portfolio to showcase projects and certificates. Built with Astro and Tailwind CSS to ensure fast performance and elegant design.",
+        image: "/projects/portfolio.png",
+        links: [
+          { label: "Live", url: "#", type: "primary" },
+          { label: "GitHub", url: "#", type: "secondary" }
+        ]
+      }
+    ].map((project) => (
+      <div
+        class="project-card relative flex items-center justify-between gap-12 p-16 min-h-[420px] rounded-2xl border border-[#2a2a2a]
+               shadow-lg hover:shadow-[0_0_30px_rgba(168,85,247,0.25)]
+               transition-all duration-500 ease-in-out mb-16 bg-opacity-5
+               will-change-transform will-change-opacity max-w-6xl mx-auto"
+      >
+        <div class="flex-1 space-y-4 z-10">
+          <h3 class="text-2xl font-bold">{project.title}</h3>
+          <p class="text-gray-400 text-[15px] leading-relaxed max-w-md">
+            {project.description}
+          </p>
+          <div class="flex gap-3 pt-4">
+            {project.links.map((link) => (
+              <a 
+                href={link.url} 
+                class={`px-5 py-2 rounded-full transition ${
+                  link.type === 'primary' 
+                    ? 'bg-purple-600 text-white hover:bg-purple-700' 
+                    : 'border border-gray-600 hover:bg-gray-800'
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div class="flex-1 flex justify-end z-10">
+          <img
+            src={project.image}
+            alt={project.title}
+            class="w-[420px] rounded-xl transition-transform duration-500 hover:scale-[1.01]"
+          />
+        </div>
+      </div>
+    ))
+  }
+</section>

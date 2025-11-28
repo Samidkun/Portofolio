@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  @apply bg-black text-white font-sans scroll-smooth;
+}
+
+section {
+  @apply py-20 px-8;
+}
+
+details {
+  @apply bg-gray-900/70 border border-gray-700 rounded-xl p-6 hover:bg-gray-800/70 transition-all duration-300;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+summary::before {
+  content: "▸";
+  margin-right: 8px;
+  color: #aaa;
+}
+details[open] summary::before {
+  content: "▾";
+  color: #fff;
+}
+
+/* Container */
+.slider {
+  position: relative;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Track (yang bergerak) */
+.slide-track {
+  display: flex;
+  width: calc(250px * 12); /* lebar = jumlah slide × lebar tiap slide */
+  animation: scroll 20s linear infinite;
+}
+
+/* Slide individual */
+.slide {
+  width: 250px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.slide img {
+  height: 60px;
+  width: auto;
+  opacity: 0.8;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.slide img:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+/* Keyframes animasi loop */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
