@@ -1,3 +1,7 @@
+---
+import { projects } from "../data/projects";
+---
+
 <section id="projects" class="py-20 px-10 bg-black text-white">
   <h2 class="text-3xl font-bold mb-12 text-center">My Projects</h2>
 
@@ -24,35 +28,7 @@
   </style>
 
   {
-    [
-      {
-        title: "Landing Page Accreditation System",
-        description: "A responsive website built to present the accreditation profile of the Business Information Systems Program at the State Polytechnic of Malang.",
-        image: "/images/accreditation.png",
-        links: [
-          { label: "Figma", url: "#", type: "primary" },
-          { label: "GitHub", url: "#", type: "secondary" }
-        ]
-      },
-      {
-        title: "Admin Dashboard",
-        description: "A dashboard web app for managing data and tracking analytics with a clean interface and smooth workflow.",
-        image: "/projects/dashboard.png",
-        links: [
-          { label: "Figma", url: "#", type: "primary" },
-          { label: "Preview", url: "#", type: "secondary" }
-        ]
-      },
-      {
-        title: "Portfolio Website",
-        description: "A minimalist portfolio to showcase projects and certificates. Built with Astro and Tailwind CSS to ensure fast performance and elegant design.",
-        image: "/projects/portfolio.png",
-        links: [
-          { label: "Live", url: "#", type: "primary" },
-          { label: "GitHub", url: "#", type: "secondary" }
-        ]
-      }
-    ].map((project) => (
+    projects.slice(0, 3).map((project) => (
       <div
         class="project-card relative flex items-center justify-between gap-12 p-16 min-h-[420px] rounded-2xl border border-[#2a2a2a]
                shadow-lg hover:shadow-[0_0_30px_rgba(168,85,247,0.25)]
@@ -84,10 +60,20 @@
           <img
             src={project.image}
             alt={project.title}
-            class="w-[420px] rounded-xl transition-transform duration-500 hover:scale-[1.01]"
+            class="w-full max-w-[400px] h-[250px] object-cover object-top rounded-xl transition-transform duration-500 hover:scale-[1.01] shadow-lg"
           />
         </div>
       </div>
     ))
   }
+
+  <div class="text-center mt-12">
+    <a 
+      href="/projects" 
+      class="inline-flex items-center gap-2 px-8 py-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-purple-500/50 transition duration-300 group"
+    >
+      <span>View All Projects</span>
+      <span class="group-hover:translate-x-1 transition-transform">→</span>
+    </a>
+  </div>
 </section>

@@ -1,65 +1,27 @@
+---
+import MusicTaste from "./MusicTaste.astro";
+---
+
 <section
   id="home"
-  class="flex flex-col md:flex-row items-center justify-between gap-16 px-12 md:px-[120px] py-20 bg-black text-white"
+  class="flex flex-col md:flex-row items-center justify-between min-h-screen px-10 md:px-24 bg-black text-white"
 >
-  <!-- Bagian Kiri: Teks -->
-  <div class="max-w-lg text-left">
-    <h2 class="text-3xl md:text-4xl italic font-semibold mb-4">
-      Hi, <span class="text-purple-400">I'm Dimas Arya Sadewa</span>
-    </h2>
+  <div class="max-w-4xl md:w-1/2">
+    <h1 class="text-6xl md:text-8xl font-bold tracking-tight mb-8 leading-tight">
+      Hi, I'm <br />
+      <span class="text-purple-500">Dimas Arya Sadewa.</span>
+    </h1>
 
-    <p class="text-gray-300 leading-relaxed text-base md:text-lg">
-      I'm a Business Information Systems student at the State Polytechnic of
-      Malang, passionate about combining technology, creativity, and analytical
-      thinking. My focus lies in developing modern, responsive websites with a
-      clean interface and functional design.
+    <p class="text-xl md:text-3xl text-gray-400 font-light leading-relaxed max-w-3xl">
+      Crafting intuitive, data-driven digital experiences for the modern web.
     </p>
 
-    <div class="flex gap-5 mt-6">
-  <a
-  href="#"
-  class="border border-gray-600 rounded-xl p-3 hover:bg-gray-800 hover:border-purple-400 transition"
->
-  <img src="/icons/github.png" alt="GitHub" class="w-7 h-7" />
-</a>
-
-    <a
-  href="#"
-  class="border border-gray-600 rounded-xl p-3 hover:bg-gray-800 hover:border-purple-400 transition"
->
-  <img src="/icons/Linkedin.png" alt="Linkedin" class="w-7 h-7" />
-</a>
-
-     <a
-  href="#"
-  class="border border-gray-600 rounded-xl p-3 hover:bg-gray-800 hover:border-purple-400 transition"
->
-  <img src="/icons/Gmail.png" alt="Gmail" class="w-7 h-7" />
-</a>
-<a
-  href="#"
-  class="border border-gray-600 rounded-xl p-3 hover:bg-gray-800 hover:border-purple-400 transition"
->
-  <img src="/icons/Instagram.png" alt="Instagram" class="w-7 h-7" />
-</a>
-
-    </div>
+    <p class="mt-8 text-lg md:text-xl text-gray-500 italic font-medium">
+      "Your Failure Will Turn Into Success"
+    </p>
   </div>
 
-  <!-- Bagian Kanan: Gambar -->
- <div class="relative group transition-all duration-500 ease-in-out translate-y-10 md:translate-y-19">
-  <!-- Glow belakang -->
-  <div
-    class="absolute inset-0 rounded-2xl bg-purple-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+  <div class="mt-12 md:mt-0 md:w-1/2 flex justify-center md:justify-end">
+    <MusicTaste />
   </div>
-
-  <!-- Foto utama -->
-  <img
-    src="/images/profile.png"
-    alt="Dimas Arya"
-    class="relative z-10 w-[340px] md:w-[400px] rounded-2xl border border-purple-400/30
-           shadow-[0_0_20px_rgba(168,85,247,0.25)] group-hover:shadow-[0_0_35px_rgba(168,85,247,0.6)]
-           group-hover:scale-[1.03] transition-all duration-500 ease-in-out" />
-</div>
-
 </section>

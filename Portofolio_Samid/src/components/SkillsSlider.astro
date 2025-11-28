@@ -1,39 +1,37 @@
+---
+const skills = [
+  { name: "Astro", icon: "/icons/skills/astro.png" },
+  { name: "JavaScript", icon: "/icons/skills/js.png" },
+  { name: "CSS", icon: "/icons/skills/css.png" },
+  { name: "HTML", icon: "/icons/skills/html.png" },
+  { name: "Flutter", icon: "/icons/skills/flutter.png" },
+  { name: "MySQL", icon: "/icons/skills/mysql.png" },
+  { name: "Laravel", icon: "/icons/skills/laravel.png" },
+  { name: "Node.js", icon: "/icons/skills/nodejs.png" },
+  { name: "Git", icon: "/icons/skills/git.png" },
+  { name: "PHP", icon: "/icons/skills/php.png" },
+  { name: "Figma", icon: "/icons/skills/figma.png" },
+];
+---
+
 <section id="skills" class="overflow-hidden py-16 bg-black text-white">
   <div class="slider">
     <div class="slide-track">
+      {/* Original Set */}
+      {skills.map((skill) => (
+        <div class="slide">
+          <img src={skill.icon} alt={skill.name} />
+          <span>{skill.name}</span>
+        </div>
+      ))}
 
-      <!-- 🔹 Icon list -->
-      <div class="slide"><img src="/icons/skills/astro.png" alt="Astro" /><span>Astro</span></div>
-      <div class="slide"><img src="/icons/skills/js.png" alt="JavaScript" /><span>JavaScript</span></div>
-      <div class="slide"><img src="/icons/skills/css.png" alt="CSS" /><span>CSS</span></div>
-      <div class="slide"><img src="/icons/skills/html.png" alt="HTML" /><span>HTML</span></div>
-      <div class="slide"><img src="/icons/skills/flutter.png" alt="Flutter" /><span>Flutter</span></div>
-      <div class="slide"><img src="/icons/skills/mysql.png" alt="MySQL" /><span>MySQL</span></div>
-      <div class="slide"><img src="/icons/skills/react.png" alt="React" /><span>React</span></div>
-      <div class="slide"><img src="/icons/skills/dart.png" alt="Dart" /><span>Dart</span></div>
-      <div class="slide"><img src="/icons/skills/laravel.png" alt="Laravel" /><span>Laravel</span></div>
-      <div class="slide"><img src="/icons/skills/nodejs.png" alt="Node.js" /><span>Node.js</span></div>
-      <div class="slide"><img src="/icons/skills/git.png" alt="Git" /><span>Git</span></div>
-      <div class="slide"><img src="/icons/skills/php.png" alt="PHP" /><span>PHP</span></div>
-      <div class="slide"><img src="/icons/skills/figma.png" alt="Figma" /><span>Figma</span></div>
-      <div class="slide"><img src="/icons/skills/java.png" alt="Java" /><span>Java</span></div>
-
-      <!-- 🔁 Duplicate untuk seamless loop -->
-      <div class="slide"><img src="/icons/skills/astro.png" alt="Astro" /><span>Astro</span></div>
-      <div class="slide"><img src="/icons/skills/js.png" alt="JavaScript" /><span>JavaScript</span></div>
-      <div class="slide"><img src="/icons/skills/css.png" alt="CSS" /><span>CSS</span></div>
-      <div class="slide"><img src="/icons/skills/html.png" alt="HTML" /><span>HTML</span></div>
-      <div class="slide"><img src="/icons/skills/flutter.png" alt="Flutter" /><span>Flutter</span></div>
-      <div class="slide"><img src="/icons/skills/mysql.png" alt="MySQL" /><span>MySQL</span></div>
-      <div class="slide"><img src="/icons/skills/react.png" alt="React" /><span>React</span></div>
-      <div class="slide"><img src="/icons/skills/dart.png" alt="Dart" /><span>Dart</span></div>
-      <div class="slide"><img src="/icons/skills/laravel.png" alt="Laravel" /><span>Laravel</span></div>
-      <div class="slide"><img src="/icons/skills/nodejs.png" alt="Node.js" /><span>Node.js</span></div>
-      <div class="slide"><img src="/icons/skills/git.png" alt="Git" /><span>Git</span></div>
-      <div class="slide"><img src="/icons/skills/php.png" alt="PHP" /><span>PHP</span></div>
-      <div class="slide"><img src="/icons/skills/figma.png" alt="Figma" /><span>Figma</span></div>
-      <div class="slide"><img src="/icons/skills/java.png" alt="Java" /><span>Java</span></div>
-
+      {/* Duplicate Set for Infinite Loop */}
+      {skills.map((skill) => (
+        <div class="slide">
+          <img src={skill.icon} alt={skill.name} />
+          <span>{skill.name}</span>
+        </div>
+      ))}
     </div>
   </div>
 </section>
@@ -48,9 +46,9 @@
   .slide-track {
     display: flex;
     align-items: center;
-    /* total item 14 × 2 = 28 */
-    width: calc(220px * 28);
-    animation: scroll 40s linear infinite;
+    /* total item 11 × 2 = 22 */
+    width: calc(220px * 22);
+    animation: scroll 30s linear infinite;
   }
 
   .slide {

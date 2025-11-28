@@ -1,0 +1,82 @@
+---
+const artists = [
+  { name: "Chris Grey", image: "/images/music/chrisgrey.jpg" },
+  { name: "Ariana Grande", image: "/images/music/arianagrande.png" },
+  { name: "The Weeknd", image: "/images/music/starboy.png" },
+  { name: "Erika Lundmoen", image: "/images/music/erikalundmeon.jpg" },
+  { name: "Chase Atlantic", image: "/images/music/chaseatlantic.jpg" },
+  { name: "FloyyMenor", image: "/images/music/floymenor.jpg" },
+  { name: "Doja Cat", image: "/images/music/dojacat.jpg" },
+  { name: "6ix9ine", image: "/images/music/6ix9ine dan Anuel AA.jpg" },
+  { name: "Lana Del Rey", image: "/images/music/lanadelrey.jpg" },
+  { name: "Chris Brown", image: "/images/music/chrisbrown.jpg" },
+];
+---
+
+<div id="music-container" class="bg-gray-900 text-white p-6 rounded-3xl w-64 shadow-2xl cursor-pointer relative transition duration-500 hover:scale-105 border border-gray-800">
+  <div class="flex justify-between items-center mb-8">
+    <span class="font-semibold text-purple-400">The Type of Music I Like</span>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg" alt="Spotify" class="w-6 h-6" />
+  </div>
+
+  <div class="relative w-full h-48 flex justify-center items-center">
+    {artists.map((artist, index) => (
+      <div class="music-card absolute w-36 h-44 rounded-xl shadow-xl transition-all duration-500 ease-in-out border border-gray-700 overflow-hidden bg-gray-800" data-index={index}>
+        <img src={artist.image} alt={artist.name} class="w-full h-36 object-cover" />
+        <div class="h-8 flex items-center justify-center bg-gray-900">
+          <span class="text-xs font-bold text-gray-300">{artist.name}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  const container = document.getElementById('music-container');
+  const cards = document.querySelectorAll('.music-card') as NodeListOf<HTMLElement>;
+  const totalCards = cards.length;
+  
+  // Posisi visual (transform & z-index)
+  // 0: Depan (Center), 1: Tengah (Kanan), 2: Belakang (Kiri)
+  const positions = [
+    { transform: 'translateX(0) scale(1) rotate(0deg)', zIndex: '30', opacity: '1' },
+    { transform: 'translateX(40px) scale(0.9) rotate(10deg)', zIndex: '20', opacity: '0.6' },
+    { transform: 'translateX(-40px) scale(0.9) rotate(-10deg)', zIndex: '10', opacity: '0.6' }
+  ];
+
+  let currentIndex = 0;
+
+  function updateCards() {
+    cards.forEach((card, index) => {
+      // Hitung jarak relatif dari currentIndex
+      // Kita ingin menampilkan 3 kartu: currentIndex, currentIndex+1, currentIndex-1 (secara circular)
+      
+      let relativeIndex = (index - currentIndex + totalCards) % totalCards;
+      
+      if (relativeIndex === 0) {
+        // Center
+        Object.assign(card.style, positions[0]);
+      } else if (relativeIndex === 1) {
+        // Right
+        Object.assign(card.style, positions[1]);
+      } else if (relativeIndex === totalCards - 1) {
+         // Left (Last item becomes the left one for symmetry/carousel feel)
+         Object.assign(card.style, positions[2]);
+      } else {
+        // Hidden
+        card.style.opacity = '0';
+        card.style.zIndex = '-1';
+        card.style.transform = 'scale(0.8)'; // Reset scale
+      }
+    });
+  }
+
+  // Init
+  updateCards();
+
+  // Rotate on click
+  container?.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % totalCards;
+    updateCards();
+  });
+</script>
