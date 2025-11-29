@@ -1,10 +1,49 @@
-<nav id="navbar" class="fixed top-0 left-0 w-full bg-black/70 backdrop-blur-md text-white z-50 transition-all duration-300">
-  <div class="max-w-6xl mx-auto flex justify-center gap-8 py-4 font-medium">
-    <a href="#home" class="nav-link hover:text-purple-400 transition-colors duration-200">Home</a>
-     <a href="#about" class="nav-link hover:text-purple-400 transition-colors duration-200">About Me</a>
-    <a href="#WhatIDo" class="nav-link hover:text-purple-400 transition-colors duration-200">What I Do</a>
-    <a href="#projects" class="nav-link hover:text-purple-400 transition-colors duration-200">Projects</a>
-    <a href="#contact" class="nav-link hover:text-purple-400 transition-colors duration-200">Contact</a>
+<nav
+  id="navbar"
+  class="fixed top-0 left-0 w-full bg-black/70 backdrop-blur-md text-white z-50 transition-all duration-300"
+>
+  <div
+    class="max-w-6xl mx-auto flex justify-between items-center py-4 px-6 font-medium"
+  >
+    <a href="#home" class="flex items-center gap-2 group">
+      <img
+        src="/icons/logo.png"
+        alt="Logo"
+        class="h-10 w-auto transition-transform group-hover:scale-110"
+      />
+      <span
+        class="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-white to-purple-400"
+        >Samid</span
+      >
+    </a>
+
+    <div class="flex gap-8 items-center">
+      <a
+        href="#home"
+        class="nav-link hover:text-purple-400 transition-colors duration-200"
+        >Home</a
+      >
+      <a
+        href="#about"
+        class="nav-link hover:text-purple-400 transition-colors duration-200"
+        >About Me</a
+      >
+      <a
+        href="#WhatIDo"
+        class="nav-link hover:text-purple-400 transition-colors duration-200"
+        >What I Do</a
+      >
+      <a
+        href="#projects"
+        class="nav-link hover:text-purple-400 transition-colors duration-200"
+        >Projects</a
+      >
+      <a
+        href="#contact"
+        class="nav-link hover:text-purple-400 transition-colors duration-200"
+        >Contact</a
+      >
+    </div>
   </div>
 </nav>
 
@@ -23,36 +62,35 @@
 </style>
 
 <script>
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll<HTMLAnchorElement>('.nav-link');
-  const navbar = document.getElementById('navbar') as HTMLElement | null;
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>(".nav-link");
+  const navbar = document.getElementById("navbar") as HTMLElement | null;
 
-  window.addEventListener('scroll', () => {
+  window.addEventListener("scroll", () => {
     let current: string | null = null;
     sections.forEach((section) => {
       const el = section as HTMLElement;
       const sectionTop = el.offsetTop - 120;
       if (window.scrollY >= sectionTop) {
-        current = el.getAttribute('id');
+        current = el.getAttribute("id");
       }
     });
 
     navLinks.forEach((link) => {
-      link.classList.remove('active');
-      if (current && link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
+      link.classList.remove("active");
+      if (current && link.getAttribute("href") === `#${current}`) {
+        link.classList.add("active");
       }
     });
   });
 
   // Navbar shadow effect
-  window.addEventListener('scroll', () => {
+  window.addEventListener("scroll", () => {
     if (!navbar) return; // ✅ pastikan navbar ada
     if (window.scrollY > 10) {
-      navbar.classList.add('shadow-lg', 'bg-black/90');
+      navbar.classList.add("shadow-lg", "bg-black/90");
     } else {
-      navbar.classList.remove('shadow-lg', 'bg-black/90');
+      navbar.classList.remove("shadow-lg", "bg-black/90");
     }
   });
 </script>
-
