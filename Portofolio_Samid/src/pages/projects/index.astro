@@ -1,7 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { projects } from "../../data/projects";
-
 ---
 
 <Layout title="All Projects | Dimas Arya Sadewa">
@@ -9,43 +8,48 @@ import { projects } from "../../data/projects";
     <div class="max-w-6xl mx-auto">
       <div class="flex items-center justify-between mb-12">
         <h2 class="text-3xl font-bold">All Projects</h2>
-        <a href="/" class="text-gray-400 hover:text-white transition flex items-center gap-2">
+        <a
+          href="/"
+          class="text-gray-400 hover:text-white transition flex items-center gap-2"
+        >
           ← Back to Home
         </a>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project) => (
-          <div class="bg-gray-900/50 border border-gray-800 rounded-xl overflow-hidden hover:border-purple-500/50 transition duration-300 group">
-            <div class="aspect-video overflow-hidden">
-              <img 
-                src={project.image} 
-                alt={project.title}
-                class="w-full h-full object-cover transition duration-500 group-hover:scale-110"
-              />
-            </div>
-            <div class="p-6 space-y-4">
-              <h3 class="text-xl font-bold">{project.title}</h3>
-              <p class="text-gray-400 text-sm leading-relaxed line-clamp-3">
-                {project.description}
-              </p>
-              <div class="flex gap-3 pt-2">
-                {project.links.map((link) => (
-                  <a 
-                    href={link.url} 
-                    class={`px-4 py-1.5 text-sm rounded-full transition ${
-                      link.type === 'primary' 
-                        ? 'bg-purple-600 text-white hover:bg-purple-700' 
-                        : 'border border-gray-600 hover:bg-gray-800'
-                    }`}
-                  >
-                    {link.label}
-                  </a>
-                ))}
+        {
+          projects.slice(3).map((project) => (
+            <div class="bg-gray-900/50 border border-gray-800 rounded-xl overflow-hidden hover:border-purple-500/50 transition duration-300 group">
+              <div class="aspect-video overflow-hidden">
+                <img
+                  src={project.images[0]}
+                  alt={project.title}
+                  class="w-full h-full object-cover transition duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div class="p-6 space-y-4">
+                <h3 class="text-xl font-bold">{project.title}</h3>
+                <p class="text-gray-400 text-sm leading-relaxed line-clamp-3">
+                  {project.description}
+                </p>
+                <div class="flex gap-3 pt-2">
+                  {project.links.map((link) => (
+                    <a
+                      href={link.url}
+                      class={`px-4 py-1.5 text-sm rounded-full transition ${
+                        link.type === "primary"
+                          ? "bg-purple-600 text-white hover:bg-purple-700"
+                          : "border border-gray-600 hover:bg-gray-800"
+                      }`}
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
   </section>

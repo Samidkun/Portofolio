@@ -7,7 +7,11 @@ import { projects } from "../data/projects";
 
   <style>
     .project-card {
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(0, 0, 0, 1) 100%);
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.08) 0%,
+        rgba(0, 0, 0, 1) 100%
+      );
       position: relative;
       overflow: hidden;
     }
@@ -16,7 +20,11 @@ import { projects } from "../data/projects";
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top left, rgba(168, 85, 247, 0.12), transparent 70%);
+      background: radial-gradient(
+        circle at top left,
+        rgba(168, 85, 247, 0.12),
+        transparent 70%
+      );
       opacity: 0;
       transition: opacity 0.5s ease;
       pointer-events: none;
@@ -42,12 +50,12 @@ import { projects } from "../data/projects";
           </p>
           <div class="flex gap-3 pt-4">
             {project.links.map((link) => (
-              <a 
-                href={link.url} 
+              <a
+                href={link.url}
                 class={`px-5 py-2 rounded-full transition ${
-                  link.type === 'primary' 
-                    ? 'bg-purple-600 text-white hover:bg-purple-700' 
-                    : 'border border-gray-600 hover:bg-gray-800'
+                  link.type === "primary"
+                    ? "bg-purple-600 text-white hover:bg-purple-700"
+                    : "border border-gray-600 hover:bg-gray-800"
                 }`}
               >
                 {link.label}
@@ -56,20 +64,27 @@ import { projects } from "../data/projects";
           </div>
         </div>
 
-        <div class="flex-1 flex justify-end z-10">
-          <img
-            src={project.image}
-            alt={project.title}
-            class="w-full max-w-[400px] h-[250px] object-cover object-top rounded-xl transition-transform duration-500 hover:scale-[1.01] shadow-lg"
-          />
+        <div class="flex-1 flex justify-end z-10 w-full max-w-[400px]">
+          <div class="relative w-full h-[250px] group/slider overflow-hidden rounded-xl shadow-lg">
+            {project.images.map((image, index) => (
+              <img
+                src={image}
+                alt={`${project.title} - Image ${index + 1}`}
+                class={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-1000 ease-in-out ${
+                  index === 0 ? "opacity-100 z-10" : "opacity-0 z-0"
+                }`}
+                data-project-index={index}
+              />
+            ))}
+          </div>
         </div>
       </div>
     ))
   }
 
   <div class="text-center mt-12">
-    <a 
-      href="/projects" 
+    <a
+      href="/projects"
       class="inline-flex items-center gap-2 px-8 py-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-purple-500/50 transition duration-300 group"
     >
       <span>View All Projects</span>
@@ -77,3 +92,35 @@ import { projects } from "../data/projects";
     </a>
   </div>
 </section>
+
+<script>
+  function initSlideshows() {
+    const sliders = document.querySelectorAll(".group\\/slider");
+
+    sliders.forEach((slider) => {
+      const images = slider.querySelectorAll("img");
+      if (images.length <= 1) return;
+
+      let currentIndex = 0;
+
+      setInterval(() => {
+        // Fade out current image
+        images[currentIndex].classList.remove("opacity-100", "z-10");
+        images[currentIndex].classList.add("opacity-0", "z-0");
+
+        // Calculate next index
+        currentIndex = (currentIndex + 1) % images.length;
+
+        // Fade in next image
+        images[currentIndex].classList.remove("opacity-0", "z-0");
+        images[currentIndex].classList.add("opacity-100", "z-10");
+      }, 3000); // Change every 3 seconds
+    });
+  }
+
+  // Run on initial load
+  initSlideshows();
+
+  // Run on view transitions if enabled
+  document.addEventListener("astro:page-load", initSlideshows);
+</script>
