@@ -17,7 +17,8 @@
       >
     </a>
 
-    <div class="flex gap-8 items-center">
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex gap-8 items-center">
       <a
         href="#home"
         class="nav-link hover:text-purple-400 transition-colors duration-200"
@@ -44,6 +45,48 @@
         >Contact</a
       >
     </div>
+
+    <!-- Hamburger Button -->
+    <button
+      id="menu-btn"
+      class="md:hidden flex flex-col justify-center items-center gap-1.5 w-8 h-8 z-50 focus:outline-none"
+      aria-label="Toggle Menu"
+    >
+      <span
+        class="block w-6 h-0.5 bg-white transition-all duration-300 origin-center"
+      ></span>
+      <span
+        class="block w-6 h-0.5 bg-white transition-all duration-300 origin-center"
+      ></span>
+      <span
+        class="block w-6 h-0.5 bg-white transition-all duration-300 origin-center"
+      ></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 text-2xl transition-transform duration-300 translate-x-full md:hidden h-screen w-screen top-0 left-0 z-40"
+  >
+    <a href="#home" class="mobile-link hover:text-purple-400 transition-colors"
+      >Home</a
+    >
+    <a href="#about" class="mobile-link hover:text-purple-400 transition-colors"
+      >About Me</a
+    >
+    <a
+      href="#WhatIDo"
+      class="mobile-link hover:text-purple-400 transition-colors">What I Do</a
+    >
+    <a
+      href="#projects"
+      class="mobile-link hover:text-purple-400 transition-colors">Projects</a
+    >
+    <a
+      href="#contact"
+      class="mobile-link hover:text-purple-400 transition-colors">Contact</a
+    >
   </div>
 </nav>
 
@@ -59,12 +102,53 @@
     border-bottom: 2px solid #c084fc;
     padding-bottom: 2px;
   }
+
+  /* Hamburger Animation Classes */
+  .hamburger-active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger-active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger-active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
 </style>
 
 <script>
   const sections = document.querySelectorAll("section[id]");
   const navLinks = document.querySelectorAll<HTMLAnchorElement>(".nav-link");
   const navbar = document.getElementById("navbar") as HTMLElement | null;
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const mobileLinks = document.querySelectorAll(".mobile-link");
+  const spans = menuBtn?.querySelectorAll("span");
+
+  // Toggle Mobile Menu
+  menuBtn?.addEventListener("click", () => {
+    const isOpen = !mobileMenu?.classList.contains("translate-x-full");
+
+    if (isOpen) {
+      // Close menu
+      mobileMenu?.classList.add("translate-x-full");
+      menuBtn.classList.remove("hamburger-active");
+      document.body.style.overflow = "auto";
+    } else {
+      // Open menu
+      mobileMenu?.classList.remove("translate-x-full");
+      menuBtn.classList.add("hamburger-active");
+      document.body.style.overflow = "hidden";
+    }
+  });
+
+  // Close menu when clicking a link
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu?.classList.add("translate-x-full");
+      menuBtn?.classList.remove("hamburger-active");
+      document.body.style.overflow = "auto";
+    });
+  });
 
   window.addEventListener("scroll", () => {
     let current: string | null = null;
@@ -86,7 +170,7 @@
 
   // Navbar shadow effect
   window.addEventListener("scroll", () => {
-    if (!navbar) return; // ✅ pastikan navbar ada
+    if (!navbar) return;
     if (window.scrollY > 10) {
       navbar.classList.add("shadow-lg", "bg-black/90");
     } else {

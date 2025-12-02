@@ -2,7 +2,7 @@
 import { projects } from "../data/projects";
 ---
 
-<section id="projects" class="py-20 px-10 bg-black text-white">
+<section id="projects" class="py-20 px-6 md:px-10 bg-black text-white">
   <h2 class="text-3xl font-bold mb-12 text-center">My Projects</h2>
 
   <style>
@@ -38,21 +38,21 @@ import { projects } from "../data/projects";
   {
     projects.slice(0, 3).map((project) => (
       <div
-        class="project-card relative flex items-center justify-between gap-12 p-16 min-h-[420px] rounded-2xl border border-[#2a2a2a]
+        class="project-card relative flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 p-8 md:p-16 min-h-auto md:min-h-[420px] rounded-2xl border border-[#2a2a2a]
                shadow-lg hover:shadow-[0_0_30px_rgba(168,85,247,0.25)]
                transition-all duration-500 ease-in-out mb-16 bg-opacity-5
                will-change-transform will-change-opacity max-w-6xl mx-auto"
       >
-        <div class="flex-1 space-y-4 z-10">
+        <div class="flex-1 space-y-4 z-10 w-full">
           <h3 class="text-2xl font-bold">{project.title}</h3>
           <p class="text-gray-400 text-[15px] leading-relaxed max-w-md">
             {project.description}
           </p>
-          <div class="flex gap-3 pt-4">
+          <div class="flex flex-wrap gap-3 pt-4">
             {project.links.map((link) => (
               <a
                 href={link.url}
-                class={`px-5 py-2 rounded-full transition ${
+                class={`px-5 py-2 rounded-full transition text-sm ${
                   link.type === "primary"
                     ? "bg-purple-600 text-white hover:bg-purple-700"
                     : "border border-gray-600 hover:bg-gray-800"
@@ -64,8 +64,8 @@ import { projects } from "../data/projects";
           </div>
         </div>
 
-        <div class="flex-1 flex justify-end z-10 w-full max-w-[400px]">
-          <div class="relative w-full h-[250px] group/slider overflow-hidden rounded-xl shadow-lg">
+        <div class="flex-1 flex justify-end z-10 w-full md:max-w-[400px]">
+          <div class="relative w-full h-[200px] md:h-[250px] group/slider overflow-hidden rounded-xl shadow-lg">
             {project.images.map((image, index) => (
               <img
                 src={image}
